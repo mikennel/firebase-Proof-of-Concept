@@ -2,23 +2,36 @@
     <div class="entryInfo">
         <h3>Sign In</h3>
         <label for="uname">Username</label>
-        <input type="text" placeholder="Username" name="uname" required>
+        <input type="email" v-model="email" placeholder="Username" name="uname" required>
         <label for="pword">Password</label>
-        <input type="password" placeholder="Password" name="pword" required>
+        <input type="password" v-model="password" placeholder="Password" name="pword" required>
         <button @click="login" class="waves-effect waves-light btn">Log In</button>
         <p>Don't have an account?  <router-link to="/sign-up">Create one</router-link></p>
     </div>
 </template>
 
 <script>
+    import firebase from 'firebase';
+
     export default {
         name: 'Login',
         data() {
-            return{};
+            return{
+                email: '',
+                password: ''
+            };
         },
         methods: {
             login: function(){
-                this.$router.replace('home');
+                firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
+                    function(user) {
+                        alert("You are connected");
+                    },
+                    function(err){
+                        alert(`Oops.  ${err.message}`);
+                    }
+                )
+                // this.$router.replace('home');
             }
         }
     }
