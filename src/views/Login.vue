@@ -24,10 +24,10 @@
         methods: {
             login: function(){
                 firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
-                    function(user) {
-                        alert("You are connected");
+                    (user) => {
+                        this.$router.replace('home');
                     },
-                    function(err){
+                    (err) => {
                         alert(`Oops.  ${err.message}`);
                     }
                 )
