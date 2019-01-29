@@ -1,12 +1,12 @@
 <template>
-    <div class="signUp">
+    <div class="entryInfo">
         <h3>Create New Account</h3>
-        <label for="uname">Email</label><br>
-        <input type="email" placeholder="Email" name="uname" required><br>
-        <label for="pword">Password</label><br>
-        <input type="password" placeholder="Password" name="pword" required><br>
-        <button>Sign Up</button><br>
-        <span>Go back to <router-link to="/login">login.</router-link></span>
+        <label for="uname">Email</label>
+        <input type="email" v-model="email" placeholder="Email" name="uname" required>
+        <label for="pword">Password</label>
+        <input type="password" v-model="password" placeholder="Password" name="pword" required>
+        <button @click="signUp" class="waves-effect waves-light btn">Sign Up</button>
+        <p>Go back to <router-link to="/login">login.</router-link></p>
     </div>
 </template>
 
@@ -14,29 +14,25 @@
     export default {
         name: 'signUp',
         data() {
-            return{};
+            return{
+                email: '',
+                password: ''
+            };
         },
-        methods: {}
+        methods: {
+            signUp: function(){
+                firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
+                    function(user) {
+                        alert('Your account has been created!');
+                    },
+                    function(err){
+                        alert(`Oops. ${err.message}`);
+                    }
+                )
+            }
+        }
     }
 </script>
 
-<style scoped>
-    .signUp{
-        margin-top: 40px;
-    }
-    input {
-        margin: 10px 0;
-        width: 20%;
-        padding: 15px;
-    }
-    button {
-        margin-top: 20px;
-        width: 10%;
-        cursor: pointer;
-    }
-    span{
-        display: block;
-        margin-top: 20px;
-        font-size: 11px;
-    }
+<style>
 </style>

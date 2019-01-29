@@ -1,11 +1,11 @@
 <template>
-    <div class="login">
+    <div class="entryInfo">
         <h3>Sign In</h3>
-        <label for="uname">Username</label><br>
-        <input type="text" placeholder="Username" name="uname" required><br>
-        <label for="pword">Password</label><br>
-        <input type="password" placeholder="Password" name="pword" required><br>
-        <button @click="login">Connection</button><br>
+        <label for="uname">Username</label>
+        <input type="text" placeholder="Username" name="uname" required>
+        <label for="pword">Password</label>
+        <input type="password" placeholder="Password" name="pword" required>
+        <button @click="login" class="waves-effect waves-light btn">Log In</button>
         <p>Don't have an account?  <router-link to="/sign-up">Create one</router-link></p>
     </div>
 </template>
@@ -24,9 +24,10 @@
     }
 </script>
 
-<style scoped>
-    .login{
-        margin-top: 40px;
+<style>
+    .entryInfo{
+        margin: auto;
+        width: 50%;
     }
     input {
         margin: 10px 0;
@@ -35,7 +36,6 @@
     }
     button {
         margin-top: 20px;
-        width: 10%;
         cursor: pointer;
     }
     p {
