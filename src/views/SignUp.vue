@@ -3,6 +3,7 @@
         <h3>Create New Account</h3>
         <label for="uname">Email</label>
         <input type="email" v-model="email" placeholder="Email" name="uname" required>
+        <br>
         <label for="pword">Password</label>
         <input type="password" v-model="password" placeholder="Password" name="pword" required>
         <button @click="signUp" class="waves-effect waves-light btn">Sign Up</button>
@@ -33,7 +34,7 @@
                 )
             }
         }
-    }
+    } 
 </script>
 
 <style>

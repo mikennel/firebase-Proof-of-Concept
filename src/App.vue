@@ -1,28 +1,29 @@
 <template>
-  <div id="app">
-    <img alt="Vue Logo" src="@/assets/logo.png">
+  <div id="mainContainer">
+    <img alt="ToDo Logo" src="@/assets/logo.png">
     <router-view />
   </div>
 </template>
 
 <style>
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+#mainContainer {
   text-align: center;
   color: #2c3e50;
 }
-#nav {
-  padding: 30px;
+.entryInfo{
+    margin: auto;
+    width: 50%;
 }
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+button {
+    margin-top: 20px;
+    cursor: pointer;
 }
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+p {
+    margin-top: 40px;
+    font-size: 13px;
+}
+p a {
+    text-decoration: underline;
+    cursor: pointer;
 }
 </style>
