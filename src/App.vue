@@ -29,7 +29,6 @@ p a {
     cursor: pointer;
 }
 
-
 @media only screen and (max-width: 1280px){
   .entryInfo{
     width: 80%;
