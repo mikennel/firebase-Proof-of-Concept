@@ -7,8 +7,31 @@
             <div id="addToDoModal-darkBack" class="hidden">
                 <div id="addToDoModal-container">
                     <div class="modalBlock header">
-                        <h3>Create a To Do Item</h3>
+                        <h4>Create a To Do Item</h4>
                         <a @click="closeListModal" id="closeModalBtn"><span class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">close</i></span></a>
+                    </div>
+                    <div class="modalBlock form">
+                        <div class="input-field">
+                            <input id="add-Title" type="text">
+                            <label for="add-Title">Title</label>
+                        </div>
+                        <div class="input-field">
+                            <input type="date" class="datepicker" id="add-Date">
+                        </div>
+                        <div class="input-field">
+                            <p>Categories</p>
+                            <p><input type="checkbox" class="add-cat" id="catA" /><label for="catA">Category A</label></p>
+                            <p><input type="checkbox" class="add-cat" id="catB" /><label for="catB">Category B</label></p>
+                            <p><input type="checkbox" class="add-cat" id="catC" /><label for="catC">Category C</label></p>
+                            <p><input type="checkbox" class="add-cat" id="catD" /><label for="catD">Category D</label></p>
+                        </div>
+                        <div class="input-field">
+                            <textarea id="add-Desc" class="materialize-textarea"></textarea>
+                            <label for="add-Desc">Description</label>
+                        </div>
+                    </div>
+                    <div class="modalBlock footer">
+                        <button @click="submitToDo" class="waves-effect waves-light btn">Create</button>
                     </div>
                 </div>
             </div>
@@ -25,9 +48,18 @@
             },
             closeListModal: function(){
                 $("#addToDoModal-darkBack").addClass("hidden");
+            },
+            submitToDo: function(){
+                console.debug("clicked!");
             }
         }
     };
+
+    // $('.datepicker').pickadate({
+    //     selectMonths: true, // Creates a dropdown to control month
+    //     selectYears: 6 // Creates a dropdown of 6 years to control year
+    // });
+
 </script>
 
 <style scope>
@@ -55,6 +87,8 @@
         width: 100%;
         height: 100%;
         margin: auto;
+        display: grid;
+        grid-template-rows: 10% 80% 10%;
     }
 
     .modalBlock{
@@ -64,6 +98,10 @@
     .modalBlock.header {
         display: grid;
         grid-template-columns: 85% 15%;
+    }
+
+    .modalBlock.form{
+        overflow-y: scroll;
     }
 
     #closeModalBtn{

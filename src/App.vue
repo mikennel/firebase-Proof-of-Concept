@@ -1,6 +1,6 @@
 <template>
   <div id="mainContainer">
-    <img alt="ToDo Logo" src="@/assets/logo.png">
+    <img alt="ToDo Logo" id="ToDoLogo" src="@/assets/logo.png">
     <router-view />
   </div>
 </template>
@@ -27,6 +27,10 @@ p {
 p a {
     text-decoration: underline;
     cursor: pointer;
+}
+
+#ToDoLogo{
+  width: 200px;
 }
 
 @media only screen and (max-width: 1280px){
