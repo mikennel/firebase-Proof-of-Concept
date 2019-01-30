@@ -2,7 +2,20 @@
   <div>
     <h1>{{ welcome }}</h1>
     <h2>{{ title }}</h2>
-    
+    <div id="listContainer">
+      <div id="listHeaders">
+        <div class="spacer headerBlock"></div>
+        <div class="headerBlock listSection">
+          <p>Title</p>
+        </div>
+        <div class="headerBlock listSection">
+          <p>Due Date</p>
+        </div>
+        <div class="headerBlock listSection">
+          <p>Categories</p>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -18,5 +31,25 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  #listContainer{
+    display: grid;
+    grid-template-columns: 100%;
+  }
 
+  #listHeaders, .listRow{
+    display: grid;
+    grid-template-columns: 10% 30% 30% 30%;
+  }
+
+  #listHeaders{
+    background-color: rgb(80, 80, 80);
+    text-align: center;
+    color: white;
+  }
+
+ .headerBlock > p{
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: .5em 0;
+  }
 </style>
