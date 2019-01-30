@@ -9,6 +9,7 @@
 #mainContainer {
   text-align: center;
   color: #2c3e50;
+  min-width: 480px;
 }
 .entryInfo{
     margin: auto;

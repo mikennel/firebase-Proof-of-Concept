@@ -15,13 +15,19 @@
           <p>Categories</p>
         </div>
       </div>
+      <listItem />
     </div>
   </div>
 </template>
 
 <script>
+import listItem from "@/components/listItem.vue"
+
 export default {
   name: "toDoList",
+  components: {
+    listItem
+  },
   props: {
     title: String,
     welcome: String
@@ -34,6 +40,7 @@ export default {
   #listContainer{
     display: grid;
     grid-template-columns: 100%;
+    text-align: left;
   }
 
   #listHeaders, .listRow{
@@ -43,7 +50,6 @@ export default {
 
   #listHeaders{
     background-color: rgb(80, 80, 80);
-    text-align: center;
     color: white;
   }
 
