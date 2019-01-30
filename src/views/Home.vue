@@ -1,19 +1,18 @@
 <template>
   <div class="entryInfo">
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <toDoList welcome="Welcome" title="Your To Do List" />
     <button @click="logout" class="waves-effect waves-light btn">Logout</button>
   </div>
 </template>
 
 <script>
 import firebase from "firebase";
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import toDoList from "@/components/toDoList.vue";
 
 export default {
   name: "home",
   components: {
-    HelloWorld
+    toDoList
   },
   methods: {
     logout: function() {
