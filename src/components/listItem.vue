@@ -1,7 +1,7 @@
 <template>
     <div class="listRow">
         <div class="listSection toDo-checkbox">
-            <input type="checkbox">
+            <a class="btn-floating btn-medium waves-effect waves-light"><i class="material-icons">check</i></a>
         </div>
         <div class="listSection toDo-title">
             <p>{{title}}</p>
@@ -55,6 +55,10 @@ export default {
     background-color: rgb(231, 231, 231);
   }
 
+  .showHideDesc{
+      cursor: pointer;
+  }
+
   .showHideArrow {
       height: 7px;
       width: 7px;
@@ -70,6 +74,13 @@ export default {
 
   .up {
       transform: rotate(135deg);
+  }
+  .toDo-checkbox{
+      margin: auto;
+  }
+  
+  .toDo-checkbox > a, .toDo-checkbox > a > i{
+      display: grid;
   }
 
   .toDo-description > p {

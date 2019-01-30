@@ -2,6 +2,7 @@
   <div>
     <h1>{{ welcome }}</h1>
     <h2>{{ title }}</h2>
+    <createListItem />
     <div id="listContainer">
       <div id="listHeaders">
         <div class="spacer headerBlock"></div>
@@ -16,24 +17,26 @@
         </div>
       </div>
       <listItem title="Title" dueDate="1/31/2019" categories="category a, category b, category c" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."/>
+      <listItem title="Title" dueDate="2/10/2019" categories="category b, category c" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."/>
     </div>
   </div>
 </template>
 
 <script>
-import listItem from "@/components/listItem.vue"
+import createListItem from "@/components/createListItem.vue";
+import listItem from "@/components/listItem.vue";
 
 export default {
   name: "toDoList",
   components: {
-    listItem
+    listItem,
+    createListItem
   },
   props: {
     title: String,
     welcome: String
   }
 };
-
 
 </script>
 
