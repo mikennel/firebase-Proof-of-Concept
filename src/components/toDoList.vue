@@ -15,7 +15,7 @@
           <p>Categories</p>
         </div>
       </div>
-      <listItem />
+      <listItem title="Title" dueDate="1/31/2019" categories="category a, category b, category c"/>
     </div>
   </div>
 </template>

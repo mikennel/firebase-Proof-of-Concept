@@ -4,13 +4,13 @@
         <input type="checkbox">
     </div>
     <div class="listSection toDo-title">
-        <p>a title</p>
+        <p>{{title}}</p>
     </div>
     <div class="listSection toDo-dueDate">
-        <p>1/31/2019</p>
+        <p>{{dueDate}}</p>
     </div>
     <div class="listSection toDo-categories">
-        <p>category a, category b, category c</p>
+        <p>{{categories}}</p>
     </div>
     </div>
 </template>
@@ -19,6 +19,9 @@
 export default {
   name: "listItem",
   props: {
+      title: String,
+      dueDate: String,
+      categories: String
   }
 };
 </script>
