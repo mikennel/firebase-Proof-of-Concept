@@ -6,32 +6,32 @@
         <label for="pword">Password</label>
         <input type="password" v-model="password" placeholder="Password" name="pword" required>
         <button @click="login" class="waves-effect waves-light btn">Log In</button>
-        <p>Don't have an account?  <router-link to="/sign-up">Create one</router-link></p>
+        <p>Don"t have an account?  <router-link to="/sign-up">Create one</router-link></p>
     </div>
 </template>
 
 <script>
-    import firebase from 'firebase';
+    import firebase from "firebase";
 
     export default {
-        name: 'Login',
+        name: "Login",
         data() {
             return{
-                email: '',
-                password: ''
+                email: "",
+                password: ""
             };
         },
         methods: {
             login: function(){
                 firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
                     (user) => {
-                        this.$router.replace('home');
+                        this.$router.replace("home");
                     },
                     (err) => {
                         alert(`Oops.  ${err.message}`);
                     }
                 )
-                // this.$router.replace('home');
+                // this.$router.replace("home");
             }
         }
     }

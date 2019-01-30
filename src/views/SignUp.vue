@@ -12,21 +12,21 @@
 </template>
 
 <script>
-    import firebase from 'firebase';
+    import firebase from "firebase";
 
     export default {
-        name: 'signUp',
+        name: "signUp",
         data() {
             return{
-                email: '',
-                password: ''
+                email: "",
+                password: ""
             };
         },
         methods: {
             signUp: function(){
                 firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
                     (user) => {
-                        this.$router.replace('home');
+                        this.$router.replace("home");
                     },
                     (err) => {
                         alert(`Oops. ${err.message}`);
