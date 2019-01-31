@@ -40,6 +40,8 @@
 </template>
 
 <script>
+    import firebase from "firebase";
+
     export default {
         name: "createListItem",
         methods: {
@@ -50,7 +52,19 @@
                 $("#addToDoModal-darkBack").addClass("hidden");
             },
             submitToDo: function(){
-                console.debug("clicked!");
+                var userId = firebase.auth().currentUser["uid"];
+                var listItemId = "aaa";
+                console.debug(userId, listItemId);
+                var title = "title a";
+                var dueDate = "2/03/2019";
+                var categories = "category a, category c"
+                var description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+                firebase.database().ref(`/users/${userId}/toDoList/`).push({
+                    title: title,
+                    dueDate: dueDate,
+                    categories: categories,
+                    description: description
+                });
             }
         }
     };
