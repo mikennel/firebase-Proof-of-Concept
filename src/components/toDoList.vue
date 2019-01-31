@@ -74,16 +74,16 @@ export default {
         arrow.addClass("down");
         //sort the items
         $wrapper.find('.listRow').sort(function(a,b){
-          return $(a).attr('data-date').localeCompare($(b).attr('data-date'));
-        }).appendTo($wrapper);
+          return new Date($(a).attr('data-date')).getTime() - new Date($(b).attr('data-date')).getTime();
+          }).appendTo($wrapper);
       } else {
         //point arrow the right direction
         arrow.removeClass("unsorted").removeClass("down");
         arrow.addClass("up");
         //sort the items
         $wrapper.find('.listRow').sort(function(b,a){
-          return $(a).attr('data-date').localeCompare($(b).attr('data-date'));
-        }).appendTo($wrapper);
+          return new Date($(a).attr('data-date')).getTime() - new Date($(b).attr('data-date')).getTime();
+          }).appendTo($wrapper);
       }
 
       // var $wrapper = $('#kbaLinkScroller');
