@@ -10,29 +10,27 @@
                         <h4>Create a To Do Item</h4>
                         <a id="closeModalBtn"><span @click="closeListModal" class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">close</i></span></a>
                     </div>
-                    <div class="modalBlock form">
+                    <form @submit.prevent="submitToDo" class="modalBlock form">
                         <div class="input-field">
-                            <input id="add-Title" type="text">
+                            <input id="add-Title" type="text" required>
                             <label for="add-Title">Title</label>
                         </div>
                         <div class="input-field">
-                            <input type="date" class="datepicker" id="add-Date">
+                            <input type="date" class="datepicker" id="add-Date" required>
                         </div>
                         <div class="input-field categoryGroups">
                             <p class="areaTitle">Categories</p>
-                            <p><input type="checkbox" class="add-cat" id="catA" /><label for="catA">Category A</label></p>
-                            <p><input type="checkbox" class="add-cat" id="catB" /><label for="catB">Category B</label></p>
-                            <p><input type="checkbox" class="add-cat" id="catC" /><label for="catC">Category C</label></p>
-                            <p><input type="checkbox" class="add-cat" id="catD" /><label for="catD">Category D</label></p>
+                            <p><input type="checkbox" class="add-cat" id="catA" value="Category A"/><label for="catA">Category A</label></p>
+                            <p><input type="checkbox" class="add-cat" id="catB" value="Category B" /><label for="catB">Category B</label></p>
+                            <p><input type="checkbox" class="add-cat" id="catC" value="Category C" /><label for="catC">Category C</label></p>
+                            <p><input type="checkbox" class="add-cat" id="catD" value="Category D" /><label for="catD">Category D</label></p>
                         </div>
                         <div class="input-field">
-                            <textarea id="add-Desc" class="materialize-textarea"></textarea>
+                            <textarea id="add-Desc" class="materialize-textarea" required></textarea>
                             <label for="add-Desc">Description</label>
                         </div>
-                    </div>
-                    <div class="modalBlock footer">
-                        <button @click="submitToDo" class="waves-effect waves-light btn">Create</button>
-                    </div>
+                        <button type="submit" class="waves-effect waves-light btn">Create</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -53,18 +51,24 @@
             },
             submitToDo: function(){
                 var userId = firebase.auth().currentUser["uid"];
-                var listItemId = "aaa";
-                console.debug(userId, listItemId);
-                var title = "title a";
-                var dueDate = "2/03/2019";
-                var categories = "category a, category c"
-                var description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+                var title = $("#add-Title").val();
+                var dueDate = $("#add-Date").val();
+                var description = $("#add-Desc").val();
+                var checkedCats = $(".add-cat:checked");
+                var categories = ""
+                for (var x = 0; x < checkedCats.length; x++){
+                    if (x > 0){
+                        categories += ", ";
+                    }
+                    categories += $(checkedCats[x]).attr("value");
+                }
                 firebase.database().ref(`/users/${userId}/toDoList/`).push({
                     title: title,
                     dueDate: dueDate,
                     categories: categories,
                     description: description
                 });
+
             }
         }
     };
