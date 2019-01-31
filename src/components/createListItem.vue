@@ -67,6 +67,12 @@
                     dueDate: dueDate,
                     categories: categories,
                     description: description
+                }, function(error){
+                    if (error){
+                        alert(`Something went wrong: ${error}`);
+                    } else {
+                        location.reload();
+                    }
                 });
 
             }
@@ -107,7 +113,7 @@
         height: 100%;
         margin: auto;
         display: grid;
-        grid-template-rows: 10% 80% 10%;
+        grid-template-rows: 15% 85%;
     }
 
     .modalBlock.form{
