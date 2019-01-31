@@ -1,5 +1,5 @@
 <template>
-    <div class="listRow">
+    <div class="listRow" :data-title="title" :data-date="dueDate" :data-categories="categories">
         <div class="listSection toDo-checkbox">
             <a class="btn-floating btn-medium waves-effect waves-light"><i class="material-icons">check</i></a>
         </div>
@@ -13,7 +13,7 @@
             <p>{{categories}}</p>
         </div>
         <div @click="showHideDescription" class="listSection showHideDesc">
-            <div class="showHideArrow down"></div>
+            <div class="arrow showHideArrow down"></div>
         </div>
         <div class="listSection toDo-description squished">
             <p>{{description}}</p>
@@ -60,21 +60,11 @@ export default {
   }
 
   .showHideArrow {
-      height: 7px;
-      width: 7px;
       margin: 6px auto;
       border-left: 2px solid black;
       border-bottom: 2px solid black;
-      transition: .5s;
   }
 
-  .down {
-      transform: rotate(-45deg);
-  }
-
-  .up {
-      transform: rotate(135deg);
-  }
   .toDo-checkbox{
       margin: auto;
   }
