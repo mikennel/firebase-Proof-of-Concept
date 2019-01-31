@@ -9,16 +9,16 @@
           <button @click="filterList" class="waves-effect waves-light btn red" data-filter="none">None</button>
         </div>
         <div>
-          <button @click="filterList" class="waves-effect waves-light btn" data-filter="category a">Category A</button>
+          <button @click="filterList" class="waves-effect waves-light btn" data-filter="Category A">Category A</button>
         </div>
         <div>
-          <button @click="filterList" class="waves-effect waves-light btn" data-filter="category b">Category B</button>
+          <button @click="filterList" class="waves-effect waves-light btn" data-filter="Category B">Category B</button>
         </div>
         <div>
-          <button @click="filterList" class="waves-effect waves-light btn" data-filter="category c">Category C</button>
+          <button @click="filterList" class="waves-effect waves-light btn" data-filter="Category C">Category C</button>
         </div>
         <div>
-          <button @click="filterList" class="waves-effect waves-light btn" data-filter="category d">Category D</button>
+          <button @click="filterList" class="waves-effect waves-light btn" data-filter="Category D">Category D</button>
         </div>
       </div>
       <div id="listHeaders">
@@ -34,15 +34,14 @@
         </div>
       </div>
       <div id="listItems">
-        <listItem title="B Title" dueDate="2/03/2020" categories="category a, category b, category c" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."/>
-        <listItem title="A Title" dueDate="3/01/2019" categories="category b, category c" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."/>
-        <listItem title="C Title" dueDate="2/10/2019" categories="category a" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."/>
+
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import firebase from "firebase";
 import createListItem from "@/components/createListItem.vue";
 import listItem from "@/components/listItem.vue";
 
@@ -121,7 +120,45 @@ export default {
           $(listItems[i]).addClass("squished");
         }
       }
+    },
+    addListItems: function(){
+      // I'm sure there's a better way to do this using the vues and components
+      var userId = firebase.auth().currentUser.uid;
+      return firebase.database().ref(`/users/${userId}/toDoList/`).once('value').then(function(snapshot) {
+        var listEntries = snapshot.val();
+        for (var i in listEntries){
+          var id = i;
+          var title = listEntries[i].title;
+          var date = listEntries[i].dueDate;
+          var cat = listEntries[i].categories;
+          var desc = listEntries[i].description
+          $("#listItems").append(`
+          <div class="listRow" data-title="${title}" data-date="${date}" data-categories="${cat}">
+            <div class="listSection toDo-checkbox" data-id="${id}">
+                <a class="btn-floating btn-medium waves-effect waves-light"><i class="material-icons">check</i></a>
+            </div>
+            <div class="listSection toDo-title">
+                <p>${title}</p>
+            </div>
+            <div class="listSection toDo-dueDate">
+                <p>${date}</p>
+            </div>
+            <div class="listSection toDo-categories">
+                <p>${cat}</p>
+            </div>
+            <div @click="showHideDescription" class="listSection showHideDesc">
+                <div class="arrow showHideArrow down"></div>
+            </div>
+            <div class="listSection toDo-description squished">
+                <p>${desc}</p>
+            </div>
+        </div>`);
+        }
+      });
     }
+  },
+  mounted(){
+    this.addListItems();
   }
 };
 
