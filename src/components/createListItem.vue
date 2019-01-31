@@ -8,7 +8,7 @@
                 <div id="addToDoModal-container">
                     <div class="modalBlock header">
                         <h4>Create a To Do Item</h4>
-                        <a @click="closeListModal" id="closeModalBtn"><span class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">close</i></span></a>
+                        <a id="closeModalBtn"><span @click="closeListModal" class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">close</i></span></a>
                     </div>
                     <div class="modalBlock form">
                         <div class="input-field">
@@ -18,8 +18,8 @@
                         <div class="input-field">
                             <input type="date" class="datepicker" id="add-Date">
                         </div>
-                        <div class="input-field">
-                            <p>Categories</p>
+                        <div class="input-field categoryGroups">
+                            <p class="areaTitle">Categories</p>
                             <p><input type="checkbox" class="add-cat" id="catA" /><label for="catA">Category A</label></p>
                             <p><input type="checkbox" class="add-cat" id="catB" /><label for="catB">Category B</label></p>
                             <p><input type="checkbox" class="add-cat" id="catC" /><label for="catC">Category C</label></p>
@@ -85,14 +85,15 @@
     #addToDoModal-container{
         background-color: white;
         width: 100%;
+        min-width: 430px;
         height: 100%;
         margin: auto;
         display: grid;
         grid-template-rows: 10% 80% 10%;
     }
 
-    .modalBlock{
-        min-height: 3em;
+    .modalBlock.form{
+        padding: 0 4em 0 4em;
     }
 
     .modalBlock.header {
@@ -106,6 +107,27 @@
 
     #closeModalBtn{
         margin: 1em 1em 0 0;
+    }
+
+    .categoryGroups{
+        display: grid;
+        grid-template-columns: 50% 50%;
+    }
+
+    .categoryGroups > p {
+        margin: .5em 0;
+        font-size: 1.5em;
+    }
+
+    .areaTitle{
+        grid-column: 1/3;
+    }
+    
+    /* materialize checkboxes not working so reverting to normal */
+    [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        opacity: 100;
+        position: relative;
+        pointer-events: initial;
     }
 
     .hidden{
