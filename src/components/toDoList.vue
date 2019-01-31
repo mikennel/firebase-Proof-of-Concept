@@ -4,6 +4,23 @@
     <h2>{{ title }}</h2>
     <createListItem />
     <div id="listContainer">
+      <div id="filterContainer">
+        <div>
+          <button @click="filterList" class="waves-effect waves-light btn red" data-filter="none">None</button>
+        </div>
+        <div>
+          <button @click="filterList" class="waves-effect waves-light btn" data-filter="category a">Category A</button>
+        </div>
+        <div>
+          <button @click="filterList" class="waves-effect waves-light btn" data-filter="category b">Category B</button>
+        </div>
+        <div>
+          <button @click="filterList" class="waves-effect waves-light btn" data-filter="category c">Category C</button>
+        </div>
+        <div>
+          <button @click="filterList" class="waves-effect waves-light btn" data-filter="category d">Category D</button>
+        </div>
+      </div>
       <div id="listHeaders">
         <div class="spacer headerBlock"></div>
         <div @click="sortByTitle" class="headerBlock listSection">
@@ -93,14 +110,15 @@ export default {
       // })
       // .appendTo($wrapper);
     },
-    filterCategory: function(){
+    filterList: function(e){
       // core of the function
       var listItems = $(".listRow");
-      for (i in listItems){
-        if (~$(listItems[i]).attr("data-categories").indexOf("category a")){
-          $(listItems[i]).addClass("squished");
-        } else {
+      var targetFilter = $(e.target).attr("data-filter");
+      for (var i = 0; i < listItems.length; ++i){
+        if (~$(listItems[i]).attr("data-categories").indexOf(targetFilter) || targetFilter == "none"){
           $(listItems[i]).removeClass("squished");
+        } else {
+          $(listItems[i]).addClass("squished");
         }
       }
     }
@@ -159,5 +177,11 @@ export default {
 
   .up {
       transform: rotate(135deg);
+  }
+
+  #filterContainer{
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    margin-bottom: 1em;
   }
 </style>
