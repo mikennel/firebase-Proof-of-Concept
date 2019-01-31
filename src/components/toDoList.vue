@@ -23,10 +23,10 @@
       </div>
       <div id="listHeaders">
         <div class="spacer headerBlock"></div>
-        <div @click="sortByTitle" class="headerBlock listSection">
+        <div @click="sortByTitle" class="headerBlock listSection sortButton">
           <p>Title</p><div id="titleArrow" class="arrow sortArrow unsorted"></div>
         </div>
-        <div @click="sortByDate" class="headerBlock listSection">
+        <div @click="sortByDate" class="headerBlock listSection sortButton">
           <p>Due Date</p><div id="dateArrow" class="arrow sortArrow unsorted"></div>
         </div>
         <div class="headerBlock listSection">
@@ -158,6 +158,10 @@ export default {
       height: 7px;
       width: 7px;
       transition: .5s;
+  }
+
+  .sortButton{
+    cursor: pointer;
   }
 
   .sortArrow{
