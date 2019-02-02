@@ -1,7 +1,7 @@
 <template>
     <div class="listRow" :data-title="title" :data-date="dueDate" :data-categories="categories">
         <div class="listSection toDo-checkbox">
-            <a class="btn-floating btn-medium waves-effect waves-light"><i class="material-icons">check</i></a>
+            <a class="btn-floating btn-medium waves-effect waves-light"><i @click="deleteListItem"  :data-id="id" class="material-icons">check</i></a>
         </div>
         <div class="listSection toDo-title">
             <p>{{title}}</p>
@@ -22,13 +22,16 @@
 </template>
 
 <script>
+import firebase from "firebase";
+
 export default {
   name: "listItem",
   props: {
       title: String,
       dueDate: String,
       categories: String,
-      description: String
+      description: String,
+      id: String
   },
   methods: {
       showHideDescription: function(e){
@@ -44,6 +47,12 @@ export default {
               arrow.addClass("down");
               descBlock.addClass("squished");
           }
+      },
+      deleteListItem: function(e){
+          var idToDelete = $(e.target).attr("data-id");
+          var userId = firebase.auth().currentUser.uid;
+          
+          console.debug(idToDelete);
       }
   }
 };

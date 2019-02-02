@@ -34,11 +34,13 @@
         </div>
       </div>
       <div id="listItems">
-
+        <listItem title="the title" dueDate="2019-1-31" categories="Category A, Category B" description="blah blah blah" id="01234567890" />
       </div>
     </div>
   </div>
 </template>
+
+<script src="/js/helper.js"></script>
 
 <script>
 import firebase from "firebase";
@@ -134,8 +136,8 @@ export default {
           var desc = listEntries[i].description
           $("#listItems").append(`
           <div class="listRow" data-title="${title}" data-date="${date}" data-categories="${cat}">
-            <div class="listSection toDo-checkbox" data-id="${id}">
-                <a class="btn-floating btn-medium waves-effect waves-light"><i class="material-icons">check</i></a>
+            <div class="listSection toDo-checkbox">
+                <a class="btn-floating btn-medium waves-effect waves-light"><i onClick="deleteListItem(this)"  data-id="${id}"class="material-icons">check</i></a>
             </div>
             <div class="listSection toDo-title">
                 <p>${title}</p>
@@ -146,7 +148,7 @@ export default {
             <div class="listSection toDo-categories">
                 <p>${cat}</p>
             </div>
-            <div @click="showHideDescription" class="listSection showHideDesc">
+            <div onClick="showHideDescription(this)" class="listSection showHideDesc">
                 <div class="arrow showHideArrow down"></div>
             </div>
             <div class="listSection toDo-description squished">
@@ -157,10 +159,26 @@ export default {
       });
     }
   },
-  mounted(){
+  created(){
     this.addListItems();
   }
 };
+
+function showHideDescription(e){
+      console.debug("hello");
+        //   var clickedSection = e.target;
+          var arrow = $($(e.target).children(".showHideArrow"));
+          var descBlock = $($(e.target).siblings(".toDo-description"));
+          if (arrow.hasClass("down")){
+              arrow.removeClass("down");
+              arrow.addClass("up");
+              descBlock.removeClass("squished");
+          } else {
+              arrow.removeClass("up");
+              arrow.addClass("down");
+              descBlock.addClass("squished");
+          }
+      }
 
 </script>
 
@@ -224,5 +242,12 @@ export default {
     display: grid;
     grid-template-columns: 20% 20% 20% 20% 20%;
     margin-bottom: 1em;
+  }
+
+  #filterContainer > div > button {
+    width: 90%;
+    font-size: .7em;
+    padding-left: .2em;
+    padding-right: .2em;
   }
 </style>
