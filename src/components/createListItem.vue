@@ -8,7 +8,7 @@
                 <div id="addToDoModal-container">
                     <div class="modalBlock header">
                         <h4>Create a To Do Item</h4>
-                        <a id="closeModalBtn"><span @click="closeListModal" class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">close</i></span></a>
+                        <a id="closeModalBtn"><span @click="closeListModal" class="btn-floating btn-medium waves-effect waves-light"><i class="material-icons">close</i></span></a>
                     </div>
                     <form @submit.prevent="submitToDo" class="modalBlock form">
                         <div class="input-field">
@@ -158,5 +158,26 @@
         margin-top: 100vh;
         background: transparent;
         transition: .5s;
+    }
+
+    @media only screen and (max-width: 812px){
+        #addToDoModal-darkBack{
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 100;
+        padding: 5vh 5vw;
+        background-color: rgba(0, 0, 0, 0.5);
+        transition: .5s;
+        }
+        .hidden{
+            margin-top: 200%;
+        }
+        #addToDoModal-container{
+            min-width: 0;
+            
+        }
     }
 </style>

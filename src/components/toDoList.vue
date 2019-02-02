@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>{{ welcome }}</h1>
-    <h2>{{ title }}</h2>
+    <h2 class="subHeader">{{ title }}</h2>
     <createListItem />
     <div id="listContainer">
       <div id="filterContainer">
@@ -137,7 +137,7 @@ export default {
           $("#listItems").append(`
           <div class="listRow" data-title="${title}" data-date="${date}" data-categories="${cat}">
             <div class="listSection toDo-checkbox">
-                <a class="btn-floating btn-medium waves-effect waves-light"><i onClick="deleteListItem(this)"  data-id="${id}"class="material-icons">check</i></a>
+                <a class="btn-floating btn-small waves-effect waves-light"><i onClick="deleteListItem(this)"  data-id="${id}"class="material-icons">check</i></a>
             </div>
             <div class="listSection toDo-title">
                 <p>${title}</p>
@@ -250,4 +250,14 @@ function showHideDescription(e){
     padding-left: .2em;
     padding-right: .2em;
   }
+
+   @media only screen and (max-width: 812px){
+      .headerBlock > p{
+        font-size: 1em;
+      }
+
+      h2.subHeader{
+        font-size: 3em;
+      }
+   }
 </style>

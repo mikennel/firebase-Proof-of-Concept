@@ -10,6 +10,7 @@
   text-align: center;
   color: #2c3e50;
   min-width: 480px;
+  margin-bottom: 3em;
 }
 .entryInfo{
     margin: auto;
@@ -42,6 +43,9 @@ p a {
 @media only screen and (max-width: 812px){
   .entryInfo{
     width: 90%;
+  }
+  #mainContainer {
+    min-width: 250px;
   }
 }
 </style>
