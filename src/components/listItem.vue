@@ -51,8 +51,7 @@ export default {
       deleteListItem: function(e){
           var idToDelete = $(e.target).attr("data-id");
           var userId = firebase.auth().currentUser.uid;
-          
-          console.debug(idToDelete);
+          firebase.database().ref(`/users/`).child(userId).child("toDoList").child(idToDelete).remove(function(){location.reload()});
       }
   }
 };

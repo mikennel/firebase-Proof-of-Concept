@@ -34,7 +34,7 @@
         </div>
       </div>
       <div id="listItems">
-        <listItem title="the title" dueDate="2019-1-31" categories="Category A, Category B" description="blah blah blah" id="01234567890" />
+        <listItem title="Using the Template" dueDate="2019-1-31" categories="Category A, Category B" description="This list item uses the vue template.  Unfortunately, I attacked this app from the wrong angle and am using Firebase as the end-all be-all source of the list.  I should have used the vue list rendering functionality to store data locally and only commited the list to firebase with a 'save' button after the user deleted/added entries.  Each delete/addition commits directly to firebase and causes a page refresh.  This might be ok for an app coded with pure html/css/js, but with vue I couldn't dynamically call the templates the way I wanted to so I went a different (and ultimately wrong) route.  Lesson learned!  This template is hard coded in the vue componenet and has all the same functionality except deletion (since it's not an actual list item)." id="01234567890" />
       </div>
     </div>
   </div>
